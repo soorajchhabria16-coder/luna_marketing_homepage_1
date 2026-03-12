@@ -244,16 +244,67 @@ document.addEventListener('DOMContentLoaded', () => {
     const chartResults = document.getElementById('chart-results');
     
     if(birthChartForm && chartResults) {
+        const signs = [
+            "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", 
+            "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"
+        ];
+        
+        const descriptions = {
+            "Aries": "bold, energetic, and pioneering.",
+            "Taurus": "grounded, reliable, and luxury-loving.",
+            "Gemini": "curious, adaptable, and communicative.",
+            "Cancer": "intuitive, nurturing, and protective.",
+            "Leo": "radiant, confident, and charismatic.",
+            "Virgo": "analytical, precise, and helpful.",
+            "Libra": "diplomatic, aesthetic, and balanced.",
+            "Scorpio": "intense, passionate, and mysterious.",
+            "Sagittarius": "optimistic, adventurous, and wise.",
+            "Capricorn": "ambitious, disciplined, and practical.",
+            "Aquarius": "innovative, unique, and humanitarian.",
+            "Pisces": "empathetic, artistic, and spiritual."
+        };
+
+        const getDeterministicSign = (str, salt) => {
+            let hash = 0;
+            const combined = str + salt;
+            for (let i = 0; i < combined.length; i++) {
+                hash = ((hash << 5) - hash) + combined.charCodeAt(i);
+                hash |= 0;
+            }
+            return signs[Math.abs(hash) % signs.length];
+        };
+
         birthChartForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
             const name = document.getElementById('name').value;
+            const date = document.getElementById('date').value;
             const location = document.getElementById('location').value;
             const time = document.getElementById('time').value;
             
-            document.getElementById('display-name').textContent = name || 'Your';
-            document.getElementById('display-location').textContent = location || 'Unknown Location';
+            // Show loading state on button
+            const btn = birthChartForm.querySelector('button');
+            const originalText = btn.textContent;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> CALCULATING ALIGNMENTS...';
             
+            const sun = getDeterministicSign(date, "sun");
+            const moon = getDeterministicSign(name + date, "moon");
+            const rising = getDeterministicSign(time + location, "rising");
+
+            // Update UI elements
+            document.getElementById('display-name').textContent = name || 'User';
+            document.getElementById('display-location').textContent = location || 'Celestial Plane';
+            document.getElementById('display-sun').textContent = sun;
+            document.getElementById('display-moon').textContent = moon;
+            document.getElementById('display-rising').textContent = rising;
+
+            const profile = `With a ${sun} Sun, your core essence is ${descriptions[sun]} ` +
+                           `Your ${moon} Moon brings a subconscious that is ${descriptions[moon]} ` +
+                           `Finally, your ${rising} Rising shapes a persona that is ${descriptions[rising]}`;
+            
+            document.getElementById('display-profile').textContent = profile;
+
             if(time) {
                 let [h, m] = time.split(':');
                 let ampm = h >= 12 ? 'PM' : 'AM';
@@ -261,18 +312,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('display-time').textContent = `${h}:${m} ${ampm}`;
             }
             
-            birthChartForm.closest('.form-card').style.opacity = '0.5';
-            birthChartForm.querySelectorAll('input, button').forEach(el => el.disabled = true);
-            
-            chartResults.style.display = 'block';
-            
+            // Simulate processing time
             setTimeout(() => {
-                chartResults.classList.add('active');
-                window.scrollTo({
-                    top: chartResults.offsetTop - 100,
-                    behavior: 'smooth'
-                });
-            }, 100);
+                birthChartForm.closest('.form-card').style.opacity = '0.5';
+                birthChartForm.querySelectorAll('input').forEach(el => el.disabled = true);
+                
+                chartResults.classList.remove('hidden');
+                chartResults.style.display = 'block';
+                
+                setTimeout(() => {
+                    chartResults.classList.add('active');
+                    window.scrollTo({
+                        top: chartResults.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    btn.textContent = originalText;
+                }, 100);
+            }, 1800);
         });
     }
 
