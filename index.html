@@ -7,8 +7,18 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
+
+<!-- Background Video Loop -->
+<div class="video-bg-container">
+    <video autoplay loop muted playsinline class="bg-video">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-stars-in-space-1610-large.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="video-overlay"></div>
+</div>
 
 <header class="navbar">
     <div class="logo">
@@ -37,7 +47,7 @@
             <button class="btn-primary pulse" onclick="window.location.href='birth-chart.html'">CREATE MY CHART</button>
         </div>
         <div class="hero-image-container">
-            <img src="assets/brain_constellation_1773255544386.png" alt="Brain constellation" class="hero-image">
+            <lottie-player src="https://lottie.host/5a22830f-b0f3-42e1-8884-bb9240bf38f8/V5R8n8oK4D.json" background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay class="hero-lottie"></lottie-player>
         </div>
     </section>
 
@@ -45,7 +55,7 @@
         <!-- Vibe Card -->
         <div class="glass-card horizontal-card vibe-card reveal" id="vibe-card">
             <div class="card-image-wrap">
-                <img src="assets/vibe_girl_1773255916183.png" alt="Today's Vibe">
+                <lottie-player src="https://lottie.host/80e98031-15fe-4f11-9e8c-f9e4e6c38da0/wY5uG6K51c.json" background="transparent" speed="0.8" style="width: 100%; height: 300px;" loop autoplay></lottie-player>
             </div>
             <div class="card-content">
                 <h2>Today's Vibe</h2>
@@ -62,7 +72,7 @@
                 <button class="btn-secondary">EXPLORE 2026 FORECAST</button>
             </div>
             <div class="card-image-wrap">
-                <img src="assets/calendar_2026_1773256116288.png" alt="2026 Year Ahead">
+                <lottie-player src="https://lottie.host/c5c8f8b8-4c20-41ff-80a5-f9e4e6c38da0/P0aR9k7e8v.json" background="transparent" speed="1" style="width: 100%; height: 320px;" loop autoplay></lottie-player>
             </div>
         </div>
     </section>
