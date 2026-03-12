@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luna - Your AI-native astrology guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        <i class="fa-solid fa-moon"></i> Luna
+    </div>
+    <nav class="nav-links">
+        <a href="today.html" class="active">Today</a>
+        <a href="year-ahead.html">2026 Year Ahead</a>
+        <a href="birth-chart.html">Birth Chart</a>
+        <a href="star-map.html">Star Map</a>
+        <a href="astro-101.html">Astro 101</a>
+        <a href="app-features.html">App</a>
+        <a href="podcasts.html">Podcasts</a>
+        <a href="about.html">About</a>
+    </nav>
+    <div class="nav-actions">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+</header>
+
+<main>
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>LUNA &ndash; Your AI-native<br>astrology guide</h1>
+            <p>Personalized birth charts, daily horoscopes, and<br>educational content, powered by advanced AI</p>
+            <button class="btn-primary pulse" onclick="window.location.href='birth-chart.html'">CREATE MY CHART</button>
+        </div>
+        <div class="hero-image-container">
+            <img src="assets/brain_constellation_1773255544386.png" alt="Brain constellation" class="hero-image">
+        </div>
+    </section>
+
+    <section class="features-section" id="vibe">
+        <!-- Vibe Card -->
+        <div class="glass-card horizontal-card vibe-card reveal" id="vibe-card">
+            <div class="card-image-wrap">
+                <img src="assets/vibe_girl_1773255916183.png" alt="Today's Vibe">
+            </div>
+            <div class="card-content">
+                <h2>Today's Vibe</h2>
+                <p>A time for intuition and emotional clarity. Trust your gut and connect with your inner self today.</p>
+                <button class="btn-secondary">READ FULL VIBE</button>
+            </div>
+        </div>
+
+        <!-- Year Ahead Card -->
+        <div class="glass-card horizontal-card year-card reverse reveal" id="year-ahead">
+            <div class="card-content">
+                <h2>2026 Year Ahead</h2>
+                <p>Discover your key themes and cosmic alignments for 2026. Unlock the potential of the coming year.</p>
+                <button class="btn-secondary">EXPLORE 2026 FORECAST</button>
+            </div>
+            <div class="card-image-wrap">
+                <img src="assets/calendar_2026_1773256116288.png" alt="2026 Year Ahead">
+            </div>
+        </div>
+    </section>
+
+    <section class="astro-101-section reveal" id="astro-101">
+        <div class="section-heading">
+            <h2>Astro 101</h2>
+            <p>Powerful comparative cards for beginners.</p>
+        </div>
+        <div class="cards-grid">
+            <div class="glass-card vertical-card">
+                <div class="icon-wrap"><i class="fa-regular fa-sun"></i></div>
+                <h3>The Sun: Your Essence</h3>
+                <p>Understanding your core personality and ego. The source of your vitality.</p>
+                <button class="btn-secondary" onclick="window.location.href='astro-101.html'">LEARN MORE</button>
+            </div>
+            <div class="glass-card vertical-card">
+                <div class="icon-wrap"><i class="fa-regular fa-moon"></i></div>
+                <h3>The Moon: Your Emotions</h3>
+                <p>Exploring your emotional inner world and subconscious needs.</p>
+                <button class="btn-secondary" onclick="window.location.href='astro-101.html'">LEARN MORE</button>
+            </div>
+            <div class="glass-card vertical-card">
+                <div class="icon-wrap"><i class="fa-solid fa-masks-theater"></i></div>
+                <h3>Rising Sign: Your Mask</h3>
+                <p>How you present yourself to the world and your first impressions.</p>
+                <button class="btn-secondary" onclick="window.location.href='astro-101.html'">LEARN MORE</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="birth-chart-section reveal" id="birth-chart">
+        <div class="glass-card horizontal-card">
+            <div class="card-content">
+                <h2>Your Cosmic Blueprint</h2>
+                <p>Dive deep into your personalized astrological birth chart. Discover the exact planetary positions at your time of birth and what they reveal about your life path, strengths, and challenges.</p>
+                <ul class="feature-list">
+                    <li><i class="fa-solid fa-check"></i> Highly accurate ephemeris data</li>
+                    <li><i class="fa-solid fa-check"></i> In-depth aspect analysis</li>
+                    <li><i class="fa-solid fa-check"></i> Personalized transit forecasts</li>
+                </ul>
+                <button class="btn-primary" onclick="window.location.href='birth-chart.html'">GET MY CHART</button>
+            </div>
+            <div class="card-image-wrap chart-wrap">
+                <img src="/Users/succ/.gemini/antigravity/brain/74dfea7c-6d3b-40a9-b5f1-dddd4ef6963b/birth_chart_ui_1773256827755.png" alt="Interactive Birth Chart Interface" class="birth-chart-img">
+            </div>
+        </div>
+    </section>
+
+    <section class="app-features-section reveal" id="app">
+        <div class="section-heading">
+            <h2>The Universe in Your Pocket</h2>
+            <p>Everything you need for your spiritual journey in one beautifully designed app.</p>
+        </div>
+        <div class="app-flex-container">
+            <div class="app-image-container">
+                <img src="/Users/succ/.gemini/antigravity/brain/74dfea7c-6d3b-40a9-b5f1-dddd4ef6963b/app_mockup_1773256589088.png" alt="Luna Mobile App" class="app-mockup">
+            </div>
+            <div class="app-features-grid">
+                <div class="feature-item">
+                    <div class="icon-circle"><i class="fa-solid fa-sparkles"></i></div>
+                    <h3>Daily Hyper-Personalized Horoscopes</h3>
+                    <p>Get insights tailored to your exact birth time, not just your sun sign.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon-circle"><i class="fa-solid fa-heart"></i></div>
+                    <h3>Cosmic Compatibility</h3>
+                    <p>Check your astrological synergy with friends, partners, or crushes.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon-circle"><i class="fa-brands fa-bots"></i></div>
+                    <h3>AI Astro-Guide Chat</h3>
+                    <p>Ask our advanced AI any astrology question and get profound, instantly accessible wisdom.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon-circle"><i class="fa-solid fa-moon"></i></div>
+                    <h3>Moon Phase Tracking</h3>
+                    <p>Align your workflow and intentions with the current lunar cycle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="podcasts-section reveal" id="podcasts">
+        <div class="section-heading">
+            <h2>Cosmic Whispers Podcast</h2>
+            <p>Listen to weekly insights, interviews, and deep dives into the mystical arts.</p>
+        </div>
+        <div class="podcast-grid">
+            <div class="glass-card podcast-card">
+                <div class="podcast-cover placeholder-cover-1">
+                    <i class="fa-solid fa-microphone-lines"></i>
+                </div>
+                <div class="podcast-info">
+                    <span class="episode-tag">Episode 42</span>
+                    <h3>Navigating Pluto in Aquarius</h3>
+                    <p>What the next 20 years hold for collective transformation.</p>
+                    <button class="btn-icon"><i class="fa-solid fa-play"></i> Listen</button>
+                </div>
+            </div>
+            <div class="glass-card podcast-card">
+                <div class="podcast-cover placeholder-cover-2">
+                    <i class="fa-solid fa-microphone-lines"></i>
+                </div>
+                <div class="podcast-info">
+                    <span class="episode-tag">Episode 41</span>
+                    <h3>Venus Retrograde Survival Guide</h3>
+                    <p>Re-evaluating love, money, and personal values.</p>
+                    <button class="btn-icon"><i class="fa-solid fa-play"></i> Listen</button>
+                </div>
+            </div>
+            <div class="glass-card podcast-card">
+                <div class="podcast-cover placeholder-cover-3">
+                    <i class="fa-solid fa-microphone-lines"></i>
+                </div>
+                <div class="podcast-info">
+                    <span class="episode-tag">Episode 40</span>
+                    <h3>The Magic of Solar Returns</h3>
+                    <p>How to interpret the chart of your birthday year.</p>
+                    <button class="btn-icon"><i class="fa-solid fa-play"></i> Listen</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section reveal">
+        <div class="glass-card cta-card">
+            <h2>Ready to align with the stars?</h2>
+            <p>Join thousands of users discovering their true cosmic potential every day.</p>
+            <div class="cta-buttons">
+                <button class="btn-primary">DOWNLOAD THE APP</button>
+                <button class="btn-secondary">READ WEB VERSION</button>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer reveal" id="about">
+    <div class="footer-links">
+        <div class="footer-col">
+            <h4>Company</h4>
+            <a href="#">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">Astro 101</a>
+            <a href="#">Connect</a>
+        </div>
+        <div class="footer-col">
+            <h4>Support</h4>
+            <a href="#">About Us</a>
+            <a href="#">Features</a>
+            <a href="#">App</a>
+            <a href="#">2026 Year Ahead</a>
+            <a href="#">Podcasts</a>
+        </div>
+        <div class="footer-col">
+            <h4>Connect</h4>
+            <a href="#">Accessibility</a>
+            <a href="#">Privacy Foundation</a>
+            <a href="#">Terms of Condition</a>
+        </div>
+    </div>
+    <div class="newsletter">
+        <h4>SUBSCRIBE TO OUR NEWSLETTER</h4>
+        <div class="input-group">
+            <input type="email" placeholder="Your email address...">
+        </div>
+        <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+    </div>
+</footer>
+
+<script src="scripts.js"></script>
+</body>
+</html>
