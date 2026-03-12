@@ -29,46 +29,214 @@ body {
   animation: fadeInPage 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Background Video Styles */
-.video-bg-container {
+/* ===================== STAR CANVAS BACKGROUND ===================== */
+.star-canvas {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   z-index: -2;
-  overflow: hidden;
-}
-
-.bg-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.6; /* Slight transparency so it blends with dark theme */
-}
-
-/* Dark gradient overlay to ensure text contrast */
-.video-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background: 
-    radial-gradient(
-      circle at top right,
-      rgba(128, 56, 150, 0.4) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at center left,
-      rgba(46, 75, 169, 0.3) 0%,
-      transparent 50%
-    ),
-    linear-gradient(to bottom, rgba(13, 15, 27, 0.3) 0%, rgba(13, 15, 27, 0.8) 100%);
   pointer-events: none;
 }
+
+/* Persistent dark purple gradient overlay over the canvas */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at top right, rgba(128, 56, 150, 0.35) 0%, transparent 55%),
+    radial-gradient(ellipse at left center, rgba(46, 75, 169, 0.25) 0%, transparent 55%),
+    linear-gradient(to bottom, rgba(13, 15, 27, 0.1) 0%, rgba(13, 15, 27, 0.65) 100%);
+  pointer-events: none;
+}
+
+/* ===================== CONSTELLATION HERO ===================== */
+.constellation-anim {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+}
+
+.constellation-svg {
+  width: 420px;
+  height: 420px;
+  filter: drop-shadow(0 0 30px rgba(168, 130, 255, 0.35));
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes starPulse {
+  0%, 100% { opacity: 1; r: 1; }
+  50% { opacity: 0.5; r: 0.7; }
+}
+
+.star-pulse {
+  animation: starPulse 2.5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.const-lines {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: drawLines 3s ease forwards;
+}
+
+@keyframes drawLines {
+  to { stroke-dashoffset: 0; }
+}
+
+/* ===================== VIBE MOON ANIMATION ===================== */
+.vibe-anim-wrap {
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1.2;
+  overflow: hidden;
+  position: relative;
+}
+
+.vibe-anim {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vibe-moon {
+  font-size: 5rem;
+  position: relative;
+  z-index: 2;
+  animation: moonFloat 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(196, 181, 253, 0.7));
+}
+
+@keyframes moonFloat {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50%       { transform: translateY(-12px) rotate(5deg); }
+}
+
+.vibe-orbit-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid;
+  animation: ringPulse 3s ease-in-out infinite;
+}
+
+.ring-1 { width: 110px; height: 110px; border-color: rgba(196,181,253,0.35); animation-delay: 0s; }
+.ring-2 { width: 160px; height: 160px; border-color: rgba(196,181,253,0.20); animation-delay: 0.5s; }
+.ring-3 { width: 210px; height: 210px; border-color: rgba(196,181,253,0.10); animation-delay: 1s; }
+
+@keyframes ringPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(1.05); }
+}
+
+.vibe-sparkle {
+  position: absolute;
+  color: #f8cf9c;
+  font-size: 1.2rem;
+  animation: sparkle 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px rgba(248,207,156,0.8));
+}
+.s1 { top: 10px; left: 20px;  animation-delay: 0s;    }
+.s2 { top: 15px; right: 15px; animation-delay: 0.5s;  }
+.s3 { bottom: 20px; left: 30px; animation-delay: 1s;  }
+.s4 { bottom: 10px; right: 20px; animation-delay: 1.5s; }
+
+@keyframes sparkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.3; transform: scale(0.7); }
+}
+
+/* ===================== ORBITAL CALENDAR ANIMATION ===================== */
+.orbit-anim-wrap {
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1.2;
+  overflow: hidden;
+  position: relative;
+}
+
+.orbit-anim {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbit-wheel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: slowSpin 60s linear infinite;
+}
+
+@keyframes slowSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.orbit-center {
+  font-size: 2.5rem;
+  position: relative;
+  z-index: 3;
+  animation: sunGlow 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 16px rgba(248,207,156,0.9));
+}
+
+@keyframes sunGlow {
+  0%, 100% { filter: drop-shadow(0 0 16px rgba(248,207,156,0.9)); }
+  50%       { filter: drop-shadow(0 0 30px rgba(248,207,156,1.0)); }
+}
+
+.orbit-track {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0;
+  border-radius: 50%;
+  transform-origin: 0 0;
+}
+
+.orbit-planet {
+  position: absolute;
+  font-size: 1.1rem;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 0 8px rgba(196,181,253,0.8));
+}
+
+/* Orbit tracks with different radii and speeds */
+.track-1 { 
+  width: 0; height: 0;
+  animation: orbit1 8s linear infinite;
+}
+.track-2 { 
+  width: 0; height: 0;
+  animation: orbit2 14s linear infinite;
+}
+.track-3 { 
+  width: 0; height: 0;
+  animation: orbit3 22s linear infinite;
+}
+
+.p1 { transform: translate(60px, -50%); }
+.p2 { transform: translate(95px, -50%); }
+.p3 { transform: translate(130px, -50%); }
+
+@keyframes orbit1 { from { transform: rotate(0deg);   } to { transform: rotate(360deg);   } }
+@keyframes orbit2 { from { transform: rotate(0deg);   } to { transform: rotate(-360deg);  } }
+@keyframes orbit3 { from { transform: rotate(45deg);  } to { transform: rotate(405deg);  } }
 
 @keyframes fadeInPage {
   from { opacity: 0; filter: blur(4px); }

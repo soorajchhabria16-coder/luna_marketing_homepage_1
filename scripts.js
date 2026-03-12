@@ -1,3 +1,91 @@
+/* ===================== ANIMATED STAR CANVAS ===================== */
+(function () {
+    const canvas = document.getElementById('starCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+        canvas.width  = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Generate stars
+    const STAR_COUNT = 280;
+    const stars = [];
+    for (let i = 0; i < STAR_COUNT; i++) {
+        stars.push({
+            x:     Math.random(),          // fractional so resize works
+            y:     Math.random(),
+            r:     Math.random() * 1.6 + 0.3,
+            alpha: Math.random(),
+            delta: (Math.random() * 0.005 + 0.002) * (Math.random() < 0.5 ? 1 : -1),
+            color: Math.random() < 0.15 ? '#f8cf9c' : '#ffffff'  // 15% gold, rest white
+        });
+    }
+
+    // Occasional shooting star
+    let shootingStar = null;
+    function spawnShootingStar() {
+        shootingStar = {
+            x:     Math.random() * canvas.width,
+            y:     Math.random() * canvas.height * 0.4,
+            len:   Math.random() * 120 + 60,
+            speed: Math.random() * 8 + 6,
+            alpha: 1
+        };
+        setTimeout(spawnShootingStar, Math.random() * 8000 + 5000);
+    }
+    setTimeout(spawnShootingStar, 3000);
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw a very subtle dark gradient background on canvas
+        const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+        grad.addColorStop(0, 'rgba(8,9,20,0.92)');
+        grad.addColorStop(1, 'rgba(13,15,27,0.98)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Draw stars
+        stars.forEach(s => {
+            s.alpha += s.delta;
+            if (s.alpha <= 0.05 || s.alpha >= 1) s.delta *= -1;
+
+            ctx.beginPath();
+            ctx.arc(s.x * canvas.width, s.y * canvas.height, s.r, 0, Math.PI * 2);
+            ctx.fillStyle = s.color === '#f8cf9c'
+                ? `rgba(248,207,156,${s.alpha})`
+                : `rgba(255,255,255,${s.alpha})`;
+            ctx.fill();
+        });
+
+        // Draw shooting star
+        if (shootingStar) {
+            const ss = shootingStar;
+            const grd = ctx.createLinearGradient(ss.x, ss.y, ss.x + ss.len, ss.y + ss.len * 0.5);
+            grd.addColorStop(0, `rgba(255,255,255,0)`);
+            grd.addColorStop(1, `rgba(255,255,255,${ss.alpha})`);
+            ctx.beginPath();
+            ctx.moveTo(ss.x, ss.y);
+            ctx.lineTo(ss.x + ss.len, ss.y + ss.len * 0.5);
+            ctx.strokeStyle = grd;
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+
+            ss.x += ss.speed;
+            ss.y += ss.speed * 0.5;
+            ss.alpha -= 0.02;
+            if (ss.alpha <= 0) shootingStar = null;
+        }
+
+        requestAnimationFrame(draw);
+    }
+    draw();
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
     // Reveal elements on scroll
     const reveals = document.querySelectorAll('.reveal');

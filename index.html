@@ -11,14 +11,8 @@
 </head>
 <body>
 
-<!-- Background Video Loop -->
-<div class="video-bg-container">
-    <video autoplay loop muted playsinline class="bg-video">
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-stars-in-space-1610-large.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <div class="video-overlay"></div>
-</div>
+<!-- Background Star Canvas -->
+<canvas id="starCanvas" class="star-canvas"></canvas>
 
 <header class="navbar">
     <div class="logo">
@@ -47,15 +41,65 @@
             <button class="btn-primary pulse" onclick="window.location.href='birth-chart.html'">CREATE MY CHART</button>
         </div>
         <div class="hero-image-container">
-            <lottie-player src="https://lottie.host/5a22830f-b0f3-42e1-8884-bb9240bf38f8/V5R8n8oK4D.json" background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay class="hero-lottie"></lottie-player>
+            <!-- Animated constellation SVG -->
+            <div class="constellation-anim" aria-hidden="true">
+                <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" class="constellation-svg">
+                    <!-- Brain-like constellation lines -->
+                    <g class="const-lines" stroke="rgba(168,130,255,0.5)" stroke-width="1.5" fill="none">
+                        <line x1="250" y1="120" x2="195" y2="175"/>
+                        <line x1="250" y1="120" x2="310" y2="165"/>
+                        <line x1="195" y1="175" x2="160" y2="240"/>
+                        <line x1="310" y1="165" x2="355" y2="230"/>
+                        <line x1="160" y1="240" x2="195" y2="310"/>
+                        <line x1="355" y1="230" x2="330" y2="310"/>
+                        <line x1="195" y1="310" x2="250" y2="360"/>
+                        <line x1="330" y1="310" x2="250" y2="360"/>
+                        <line x1="195" y1="175" x2="250" y2="220"/>
+                        <line x1="310" y1="165" x2="250" y2="220"/>
+                        <line x1="250" y1="220" x2="250" y2="300"/>
+                        <line x1="160" y1="240" x2="250" y2="220"/>
+                        <line x1="355" y1="230" x2="250" y2="220"/>
+                    </g>
+                    <!-- Stars at junctions -->
+                    <g class="const-stars" fill="#c4b5fd">
+                        <circle cx="250" cy="120" r="5" class="star-pulse"/>
+                        <circle cx="195" cy="175" r="4" class="star-pulse" style="animation-delay:0.3s"/>
+                        <circle cx="310" cy="165" r="4" class="star-pulse" style="animation-delay:0.6s"/>
+                        <circle cx="160" cy="240" r="3.5" class="star-pulse" style="animation-delay:0.9s"/>
+                        <circle cx="355" cy="230" r="3.5" class="star-pulse" style="animation-delay:1.2s"/>
+                        <circle cx="250" cy="220" r="6" class="star-pulse" style="animation-delay:0.15s"/>
+                        <circle cx="195" cy="310" r="3.5" class="star-pulse" style="animation-delay:1.5s"/>
+                        <circle cx="330" cy="310" r="3.5" class="star-pulse" style="animation-delay:0.75s"/>
+                        <circle cx="250" cy="360" r="5" class="star-pulse" style="animation-delay:0.45s"/>
+                    </g>
+                    <!-- Central glow -->
+                    <circle cx="250" cy="220" r="40" fill="url(#centerGlow)" opacity="0.4"/>
+                    <defs>
+                        <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#a78bfa"/>
+                            <stop offset="100%" stop-color="transparent"/>
+                        </radialGradient>
+                    </defs>
+                </svg>
+            </div>
         </div>
     </section>
 
     <section class="features-section" id="vibe">
         <!-- Vibe Card -->
         <div class="glass-card horizontal-card vibe-card reveal" id="vibe-card">
-            <div class="card-image-wrap">
-                <lottie-player src="https://lottie.host/80e98031-15fe-4f11-9e8c-f9e4e6c38da0/wY5uG6K51c.json" background="transparent" speed="0.8" style="width: 100%; height: 300px;" loop autoplay></lottie-player>
+            <div class="card-image-wrap vibe-anim-wrap">
+                <!-- Animated moon + aura -->
+                <div class="vibe-anim" aria-hidden="true">
+                    <div class="vibe-orbit-ring ring-1"></div>
+                    <div class="vibe-orbit-ring ring-2"></div>
+                    <div class="vibe-orbit-ring ring-3"></div>
+                    <div class="vibe-moon">🌙</div>
+                    <div class="vibe-sparkle s1">✦</div>
+                    <div class="vibe-sparkle s2">✧</div>
+                    <div class="vibe-sparkle s3">✦</div>
+                    <div class="vibe-sparkle s4">✧</div>
+                </div>
             </div>
             <div class="card-content">
                 <h2>Today's Vibe</h2>
@@ -71,8 +115,23 @@
                 <p>Discover your key themes and cosmic alignments for 2026. Unlock the potential of the coming year.</p>
                 <button class="btn-secondary">EXPLORE 2026 FORECAST</button>
             </div>
-            <div class="card-image-wrap">
-                <lottie-player src="https://lottie.host/c5c8f8b8-4c20-41ff-80a5-f9e4e6c38da0/P0aR9k7e8v.json" background="transparent" speed="1" style="width: 100%; height: 320px;" loop autoplay></lottie-player>
+            <div class="card-image-wrap orbit-anim-wrap">
+                <!-- Animated solar system / orbital astro wheel -->
+                <div class="orbit-anim" aria-hidden="true">
+                    <div class="orbit-center">☀</div>
+                    <div class="orbit-track track-1"><div class="orbit-planet p1">♈</div></div>
+                    <div class="orbit-track track-2"><div class="orbit-planet p2">♍</div></div>
+                    <div class="orbit-track track-3"><div class="orbit-planet p3">♓</div></div>
+                    <svg class="orbit-wheel" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="150" cy="150" r="60" stroke="rgba(248,207,156,0.3)" stroke-width="1" fill="none" stroke-dasharray="4 6"/>
+                        <circle cx="150" cy="150" r="95" stroke="rgba(168,130,255,0.3)" stroke-width="1" fill="none" stroke-dasharray="4 6"/>
+                        <circle cx="150" cy="150" r="130" stroke="rgba(99,179,237,0.3)" stroke-width="1" fill="none" stroke-dasharray="4 6"/>
+                        <line x1="150" y1="20" x2="150" y2="280" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                        <line x1="20" y1="150" x2="280" y2="150" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                        <line x1="60" y1="60" x2="240" y2="240" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                        <line x1="240" y1="60" x2="60" y2="240" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                    </svg>
+                </div>
             </div>
         </div>
     </section>
@@ -117,7 +176,7 @@
                 <button class="btn-primary" onclick="window.location.href='birth-chart.html'">GET MY CHART</button>
             </div>
             <div class="card-image-wrap chart-wrap">
-                <img src="/Users/succ/.gemini/antigravity/brain/74dfea7c-6d3b-40a9-b5f1-dddd4ef6963b/birth_chart_ui_1773256827755.png" alt="Interactive Birth Chart Interface" class="birth-chart-img">
+                <img src="assets/birth_chart_ui.png" alt="Interactive Birth Chart Interface" class="birth-chart-img">
             </div>
         </div>
     </section>
@@ -129,7 +188,7 @@
         </div>
         <div class="app-flex-container">
             <div class="app-image-container">
-                <img src="/Users/succ/.gemini/antigravity/brain/74dfea7c-6d3b-40a9-b5f1-dddd4ef6963b/app_mockup_1773256589088.png" alt="Luna Mobile App" class="app-mockup">
+                <img src="assets/app_mockup.png" alt="Luna Mobile App" class="app-mockup">
             </div>
             <div class="app-features-grid">
                 <div class="feature-item">
