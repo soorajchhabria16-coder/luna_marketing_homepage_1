@@ -1,88 +1,140 @@
-/* ===================== ANIMATED STAR CANVAS ===================== */
+/* ===================== PREMIUM 3D STAR & NEBULA CANVAS ===================== */
 (function () {
     const canvas = document.getElementById('starCanvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
 
+    let w, h;
+    let mouseX = 0, mouseY = 0;
+    let targetMouseX = 0, targetMouseY = 0;
+    let scrollY = 0;
+
     function resize() {
-        canvas.width  = window.innerWidth;
-        canvas.height = window.innerHeight;
+        w = canvas.width  = window.innerWidth;
+        h = canvas.height = window.innerHeight;
     }
     resize();
     window.addEventListener('resize', resize);
+    window.addEventListener('mousemove', (e) => {
+        targetMouseX = (e.clientX - w / 2) / 30;
+        targetMouseY = (e.clientY - h / 2) / 30;
+    });
+    window.addEventListener('scroll', () => {
+        scrollY = window.pageYOffset;
+    });
 
-    // Generate stars
-    const STAR_COUNT = 280;
+    // Generate stars with 3D layers
+    const STAR_COUNT = 350;
     const stars = [];
     for (let i = 0; i < STAR_COUNT; i++) {
         stars.push({
-            x:     Math.random(),          // fractional so resize works
-            y:     Math.random(),
-            r:     Math.random() * 1.6 + 0.3,
+            x: Math.random() * w,
+            y: Math.random() * h,
+            z: Math.random() * 2 + 0.5, // Depth layer
+            r: Math.random() * 1.8 + 0.2,
             alpha: Math.random(),
-            delta: (Math.random() * 0.005 + 0.002) * (Math.random() < 0.5 ? 1 : -1),
-            color: Math.random() < 0.15 ? '#f8cf9c' : '#ffffff'  // 15% gold, rest white
+            delta: (Math.random() * 0.008 + 0.003) * (Math.random() < 0.5 ? 1 : -1),
+            color: Math.random() < 0.2 ? '#f8cf9c' : (Math.random() < 0.1 ? '#a78bfa' : '#ffffff')
         });
     }
 
-    // Occasional shooting star
+    // Nebula Clouds (Dynamic blurred gradients)
+    const nebulas = [
+        { x: 0.2, y: 0.3, r: 400, color: 'rgba(128, 56, 150, 0.15)' },
+        { x: 0.8, y: 0.7, r: 500, color: 'rgba(46, 75, 169, 0.12)' },
+        { x: 0.5, y: 0.5, r: 350, color: 'rgba(167, 139, 250, 0.08)' }
+    ];
+
     let shootingStar = null;
     function spawnShootingStar() {
         shootingStar = {
-            x:     Math.random() * canvas.width,
-            y:     Math.random() * canvas.height * 0.4,
-            len:   Math.random() * 120 + 60,
-            speed: Math.random() * 8 + 6,
-            alpha: 1
+            x: Math.random() * w,
+            y: Math.random() * h * 0.3,
+            len: Math.random() * 150 + 80,
+            speed: Math.random() * 12 + 8,
+            alpha: 1,
+            angle: Math.PI / 4 + (Math.random() - 0.5) * 0.2
         };
-        setTimeout(spawnShootingStar, Math.random() * 8000 + 5000);
+        setTimeout(spawnShootingStar, Math.random() * 12000 + 4000);
     }
     setTimeout(spawnShootingStar, 3000);
 
     function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(0, 0, w, h);
 
-        // Draw a very subtle dark gradient background on canvas
-        const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
-        grad.addColorStop(0, 'rgba(8,9,20,0.92)');
-        grad.addColorStop(1, 'rgba(13,15,27,0.98)');
-        ctx.fillStyle = grad;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // Interpolate mouse for smoothness
+        mouseX += (targetMouseX - mouseX) * 0.05;
+        mouseY += (targetMouseY - mouseY) * 0.05;
 
-        // Draw stars
+        // 1. Draw Background
+        ctx.fillStyle = '#080914';
+        ctx.fillRect(0, 0, w, h);
+
+        // 2. Draw Nebula Clouds
+        nebulas.forEach(n => {
+            const nx = n.x * w - (mouseX * 0.5);
+            const ny = n.y * h - (mouseY * 0.5) - (scrollY * 0.2);
+            const grad = ctx.createRadialGradient(nx, ny, 0, nx, ny, n.r);
+            grad.addColorStop(0, n.color);
+            grad.addColorStop(1, 'rgba(0,0,0,0)');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, w, h);
+        });
+
+        // 3. Draw Stars with Parallax
         stars.forEach(s => {
             s.alpha += s.delta;
-            if (s.alpha <= 0.05 || s.alpha >= 1) s.delta *= -1;
+            if (s.alpha <= 0.1 || s.alpha >= 1) s.delta *= -1;
+
+            // Parallax offset calculation
+            const px = s.x - (mouseX * s.z);
+            let py = s.y - (mouseY * s.z) - (scrollY * 0.1 * s.z);
+            
+            // Loop stars vertically
+            while (py < 0) py += h;
+            while (py > h) py -= h;
 
             ctx.beginPath();
-            ctx.arc(s.x * canvas.width, s.y * canvas.height, s.r, 0, Math.PI * 2);
-            ctx.fillStyle = s.color === '#f8cf9c'
-                ? `rgba(248,207,156,${s.alpha})`
+            ctx.arc(px % w, py, s.r * (s.z / 2), 0, Math.PI * 2);
+            ctx.fillStyle = s.color.startsWith('#') 
+                ? hexToRgbA(s.color, s.alpha)
                 : `rgba(255,255,255,${s.alpha})`;
             ctx.fill();
         });
 
-        // Draw shooting star
+        // 4. Draw Shooting Star
         if (shootingStar) {
             const ss = shootingStar;
-            const grd = ctx.createLinearGradient(ss.x, ss.y, ss.x + ss.len, ss.y + ss.len * 0.5);
-            grd.addColorStop(0, `rgba(255,255,255,0)`);
+            const endX = ss.x + Math.cos(ss.angle) * ss.len;
+            const endY = ss.y + Math.sin(ss.angle) * ss.len;
+            
+            const grd = ctx.createLinearGradient(ss.x, ss.y, endX, endY);
+            grd.addColorStop(0, 'rgba(255,255,255,0)');
             grd.addColorStop(1, `rgba(255,255,255,${ss.alpha})`);
+            
             ctx.beginPath();
             ctx.moveTo(ss.x, ss.y);
-            ctx.lineTo(ss.x + ss.len, ss.y + ss.len * 0.5);
+            ctx.lineTo(endX, endY);
             ctx.strokeStyle = grd;
-            ctx.lineWidth = 1.5;
+            ctx.lineWidth = 2;
             ctx.stroke();
 
-            ss.x += ss.speed;
-            ss.y += ss.speed * 0.5;
-            ss.alpha -= 0.02;
+            ss.x += Math.cos(ss.angle) * ss.speed;
+            ss.y += Math.sin(ss.angle) * ss.speed;
+            ss.alpha -= 0.015;
             if (ss.alpha <= 0) shootingStar = null;
         }
 
         requestAnimationFrame(draw);
     }
+
+    function hexToRgbA(hex, alpha) {
+        let r = parseInt(hex.slice(1, 3), 16),
+            g = parseInt(hex.slice(3, 5), 16),
+            b = parseInt(hex.slice(5, 7), 16);
+        return `rgba(${r},${g},${b},${alpha})`;
+    }
+
     draw();
 })();
 

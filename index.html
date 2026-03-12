@@ -44,38 +44,46 @@
             <!-- Animated constellation SVG -->
             <div class="constellation-anim" aria-hidden="true">
                 <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" class="constellation-svg">
-                    <!-- Brain-like constellation lines -->
-                    <g class="const-lines" stroke="rgba(168,130,255,0.5)" stroke-width="1.5" fill="none">
-                        <line x1="250" y1="120" x2="195" y2="175"/>
-                        <line x1="250" y1="120" x2="310" y2="165"/>
-                        <line x1="195" y1="175" x2="160" y2="240"/>
-                        <line x1="310" y1="165" x2="355" y2="230"/>
-                        <line x1="160" y1="240" x2="195" y2="310"/>
-                        <line x1="355" y1="230" x2="330" y2="310"/>
-                        <line x1="195" y1="310" x2="250" y2="360"/>
-                        <line x1="330" y1="310" x2="250" y2="360"/>
-                        <line x1="195" y1="175" x2="250" y2="220"/>
-                        <line x1="310" y1="165" x2="250" y2="220"/>
-                        <line x1="250" y1="220" x2="250" y2="300"/>
-                        <line x1="160" y1="240" x2="250" y2="220"/>
-                        <line x1="355" y1="230" x2="250" y2="220"/>
+                    <!-- Complex Brain-like constellation lines -->
+                    <g class="const-lines" stroke="rgba(168,130,255,0.4)" stroke-width="1.2" fill="none">
+                        <line x1="250" y1="80" x2="180" y2="130"/>
+                        <line x1="250" y1="80" x2="320" y2="130"/>
+                        <line x1="180" y1="130" x2="140" y2="210"/>
+                        <line x1="320" y1="130" x2="360" y2="210"/>
+                        <line x1="140" y1="210" x2="150" y2="300"/>
+                        <line x1="360" y1="210" x2="350" y2="300"/>
+                        <line x1="150" y1="300" x2="250" y2="380"/>
+                        <line x1="350" y1="300" x2="250" y2="380"/>
+                        <!-- Inner connections -->
+                        <line x1="250" y1="80" x2="250" y2="180"/>
+                        <line x1="180" y1="130" x2="250" y2="180"/>
+                        <line x1="320" y1="130" x2="250" y2="180"/>
+                        <line x1="140" y1="210" x2="250" y2="180"/>
+                        <line x1="360" y1="210" x2="250" y2="180"/>
+                        <line x1="250" y1="180" x2="250" y2="280"/>
+                        <line x1="150" y1="300" x2="250" y2="280"/>
+                        <line x1="350" y1="300" x2="250" y2="280"/>
+                        <!-- Cross connections for 'neuronal' look -->
+                        <line x1="180" y1="130" x2="150" y2="300" opacity="0.3"/>
+                        <line x1="320" y1="130" x2="350" y2="300" opacity="0.3"/>
                     </g>
                     <!-- Stars at junctions -->
                     <g class="const-stars" fill="#c4b5fd">
-                        <circle cx="250" cy="120" r="5" class="star-pulse"/>
-                        <circle cx="195" cy="175" r="4" class="star-pulse" style="animation-delay:0.3s"/>
-                        <circle cx="310" cy="165" r="4" class="star-pulse" style="animation-delay:0.6s"/>
-                        <circle cx="160" cy="240" r="3.5" class="star-pulse" style="animation-delay:0.9s"/>
-                        <circle cx="355" cy="230" r="3.5" class="star-pulse" style="animation-delay:1.2s"/>
-                        <circle cx="250" cy="220" r="6" class="star-pulse" style="animation-delay:0.15s"/>
-                        <circle cx="195" cy="310" r="3.5" class="star-pulse" style="animation-delay:1.5s"/>
-                        <circle cx="330" cy="310" r="3.5" class="star-pulse" style="animation-delay:0.75s"/>
-                        <circle cx="250" cy="360" r="5" class="star-pulse" style="animation-delay:0.45s"/>
+                        <circle cx="250" cy="80" r="5"  class="star-node s-n-1"/>
+                        <circle cx="180" cy="130" r="4" class="star-node s-n-2"/>
+                        <circle cx="320" cy="130" r="4" class="star-node s-n-3"/>
+                        <circle cx="140" cy="210" r="6" class="star-node s-n-4"/>
+                        <circle cx="360" cy="210" r="6" class="star-node s-n-5"/>
+                        <circle cx="250" cy="180" r="8" class="star-node s-n-6"/>
+                        <circle cx="150" cy="300" r="4" class="star-node s-n-7"/>
+                        <circle cx="350" cy="300" r="4" class="star-node s-n-8"/>
+                        <circle cx="250" cy="280" r="7" class="star-node s-n-9"/>
+                        <circle cx="250" cy="380" r="5" class="star-node s-n-10"/>
                     </g>
-                    <!-- Central glow -->
-                    <circle cx="250" cy="220" r="40" fill="url(#centerGlow)" opacity="0.4"/>
+                    <!-- Central Core Glow -->
+                    <circle cx="250" cy="180" r="60" fill="url(#coreGlow)" opacity="0.4" class="core-node"/>
                     <defs>
-                        <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+                        <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
                             <stop offset="0%" stop-color="#a78bfa"/>
                             <stop offset="100%" stop-color="transparent"/>
                         </radialGradient>
