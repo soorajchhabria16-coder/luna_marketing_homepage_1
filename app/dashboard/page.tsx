@@ -200,11 +200,11 @@ export default function DashboardPage() {
           <div className="comp-breakdown">
             <div className="comp-item">
               <span className="label">Communication</span>
-              <div className="progress-bar"><div className="fill" style={{ '--fill-width': `${compReport.score - 5}%` } as React.CSSProperties}></div></div>
+              <div className="progress-bar"><div className="progress-fill" style={{ '--fill-width': `${compReport.score - 5}%` } as React.CSSProperties}></div></div>
             </div>
             <div className="comp-item">
               <span className="label">Emotional Depth</span>
-              <div className="progress-bar"><div className="fill" style={{ '--fill-width': `${compReport.score + 3}%` } as React.CSSProperties}></div></div>
+              <div className="progress-bar"><div className="progress-fill" style={{ '--fill-width': `${compReport.score + 3}%` } as React.CSSProperties}></div></div>
             </div>
           </div>
         </div>
@@ -340,17 +340,17 @@ export default function DashboardPage() {
 
                   <div className="chart-signs-row">
                     <div className="sign-badge">
-                      <i className="fa-solid fa-sun" style={{color: '#f8cf9c'}}></i>
+                      <i className="fa-solid fa-sun icon-sun"></i>
                       <span className="sign-label">Sun</span>
                       <span className="sign-value">{chart.sun_sign}</span>
                     </div>
                     <div className="sign-badge">
-                      <i className="fa-solid fa-moon" style={{color: '#c4b5fd'}}></i>
+                      <i className="fa-solid fa-moon icon-moon"></i>
                       <span className="sign-label">Moon</span>
                       <span className="sign-value">{chart.moon_sign}</span>
                     </div>
                     <div className="sign-badge">
-                      <i className="fa-solid fa-circle-up" style={{color: '#93c5fd'}}></i>
+                      <i className="fa-solid fa-circle-up icon-rising"></i>
                       <span className="sign-label">Rising</span>
                       <span className="sign-value">{chart.rising_sign}</span>
                     </div>
