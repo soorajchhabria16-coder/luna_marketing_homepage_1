@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
+import Navbar from '../components/Navbar';
 
 interface Star {
   radius: number;
@@ -189,16 +189,7 @@ export default function StarMapPage() {
 
   return (
     <div className="star-map-main">
-      <header className="navbar">
-        <Link href="/" className="logo">
-          <i className="fa-solid fa-moon"></i> Luna
-        </Link>
-        <nav className="nav-links">
-          <Link href="/">Home</Link>
-          <Link href="/dashboard">Dashboard</Link>
-          <Link href="/star-map" className="active">Star Map</Link>
-        </nav>
-      </header>
+      <Navbar />
 
       <section className="star-map-container">
         <canvas ref={canvasRef} id="starMapCanvas"></canvas>

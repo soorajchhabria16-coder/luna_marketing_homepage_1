@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useUser, SignInButton } from '@clerk/nextjs';
 import Navbar from './components/Navbar';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -407,6 +408,34 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ASTRO 101 SECTION */}
+        <section className="astro-101-section reveal" id="astro-101">
+          <div className="section-heading">
+            <h2>The Three Pillars</h2>
+            <p>Your astrological identity is more than just your sun sign. Discover the trinity that defines your cosmic essence.</p>
+          </div>
+          <div className="cards-grid">
+            <div className="glass-card vertical-card">
+              <div className="icon-wrap"><i className="fa-regular fa-sun"></i></div>
+              <h3>The Sun: Your Essence</h3>
+              <p>Understanding your core personality and ego. The source of your vitality.</p>
+              <button className="btn-secondary" onClick={() => setShowVibeModal(true)}>LEARN MORE</button>
+            </div>
+            <div className="glass-card vertical-card">
+              <div className="icon-wrap"><i className="fa-regular fa-moon"></i></div>
+              <h3>The Moon: Your Emotions</h3>
+              <p>Exploring your emotional inner world and subconscious needs.</p>
+              <button className="btn-secondary" onClick={() => setShowVibeModal(true)}>LEARN MORE</button>
+            </div>
+            <div className="glass-card vertical-card">
+              <div className="icon-wrap"><i className="fa-solid fa-masks-theater"></i></div>
+              <h3>Rising Sign: Your Mask</h3>
+              <p>How you present yourself to the world and your first impressions.</p>
+              <button className="btn-secondary" onClick={() => setShowVibeModal(true)}>LEARN MORE</button>
+            </div>
+          </div>
+        </section>
+
         <section className="birth-chart-section reveal" id="birth-chart">
           <div className="section-heading chart-section-heading">
             <h2>Birth Chart Generator</h2>
@@ -547,6 +576,55 @@ export default function Home() {
                 <h3>Cosmic Compatibility</h3>
                 <p>Check your astrological synergy with friends, partners, or crushes.</p>
               </div>
+              <div className="feature-item">
+                <div className="icon-circle"><i className="fa-brands fa-bots"></i></div>
+                <h3>AI Astro-Guide Chat</h3>
+                <p>Ask our advanced AI any astrology question and get profound, instantly accessible wisdom.</p>
+              </div>
+              <div className="feature-item">
+                <div className="icon-circle"><i className="fa-solid fa-moon"></i></div>
+                <h3>Moon Phase Tracking</h3>
+                <p>Align your workflow and intentions with the current lunar cycle.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* PODCASTS SECTION */}
+        <section className="podcasts-section reveal" id="podcasts">
+          <div className="section-heading">
+            <h2>Cosmic Whispers Podcast</h2>
+            <p>Listen to weekly insights, interviews, and deep dives into the mystical arts.</p>
+          </div>
+          <div className="podcast-grid">
+            {[ 
+              { ep: 42, title: "Navigating Pluto in Aquarius", desc: "What the next 20 years hold for collective transformation." },
+              { ep: 41, title: "Venus Retrograde Survival Guide", desc: "Re-evaluating love, money, and personal values." },
+              { ep: 40, title: "The Magic of Solar Returns", desc: "How to interpret the chart of your birthday year." }
+            ].map((p, i) => (
+              <div key={i} className="glass-card podcast-card">
+                <div className={`podcast-cover placeholder-cover-${i+1}`}>
+                    <i className="fa-solid fa-microphone-lines"></i>
+                </div>
+                <div className="podcast-info">
+                    <span className="episode-tag">Episode {p.ep}</span>
+                    <h3>{p.title}</h3>
+                    <p>{p.desc}</p>
+                    <button className="btn-icon"><i className="fa-solid fa-play"></i> Listen</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* CTA SECTION */}
+        <section className="cta-section reveal">
+          <div className="glass-card cta-card">
+            <h2>Ready to align with the stars?</h2>
+            <p>Join thousands of users discovering their true cosmic potential every day.</p>
+            <div className="cta-buttons">
+              <button className="btn-primary">DOWNLOAD THE APP</button>
+              <Link href="/#birth-chart" className="btn-secondary">READ WEB VERSION</Link>
             </div>
           </div>
         </section>
@@ -556,23 +634,31 @@ export default function Home() {
         <div className="footer-links">
           <div className="footer-col">
             <h4>Company</h4>
-            <a href="#">Home</a>
-            <a href="#">About Us</a>
+            <Link href="/">Home</Link>
+            <Link href="/#about">About Us</Link>
+            <Link href="/#astro-101">Astro 101</Link>
           </div>
           <div className="footer-col">
             <h4>Support</h4>
-            <a href="#">Help Center</a>
-            <a href="#">Terms of Service</a>
+            <Link href="/#app">App Features</Link>
+            <Link href="/star-map">Celestial Map</Link>
+            <Link href="/#podcasts">Podcasts</Link>
+          </div>
+          <div className="footer-col">
+            <h4>Legal</h4>
+            <Link href="#">Terms</Link>
+            <Link href="#">Privacy</Link>
           </div>
         </div>
         <div className="newsletter">
           <h4>SUBSCRIBE TO OUR NEWSLETTER</h4>
           <div className="input-group">
-            <input type="email" placeholder="Your email address..." />
+            <input type="email" placeholder="Your email address..." aria-label="Newsletter email" />
           </div>
           <div className="social-icons">
-            <a href="#"><i className="fa-brands fa-x-twitter"></i></a>
-            <a href="#"><i className="fa-brands fa-instagram"></i></a>
+            <a href="#" title="X-Twitter"><i className="fa-brands fa-x-twitter"></i></a>
+            <a href="#" title="Instagram"><i className="fa-brands fa-instagram"></i></a>
+            <a href="#" title="TikTok"><i className="fa-brands fa-tiktok"></i></a>
           </div>
         </div>
       </footer>
