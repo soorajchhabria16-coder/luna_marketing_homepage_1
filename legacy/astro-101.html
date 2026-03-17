@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luna - Astro 101</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        <a href="index.html" class="logo-link">
+            <i class="fa-solid fa-moon"></i> Luna
+        </a>
+    </div>
+    <nav class="nav-links">
+        <a href="index.html#vibe">Today</a>
+        <a href="index.html#year-ahead">2026 Year Ahead</a>
+        <a href="birth-chart.html">Birth Chart</a>
+        <a href="star-map.html">Star Map</a>
+        <a href="astro-101.html" class="active">Astro 101</a>
+        <a href="index.html#app">App</a>
+        <a href="index.html#podcasts">Podcasts</a>
+        <a href="index.html#about">About</a>
+    </nav>
+    <div class="nav-actions">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+</header>
+
+<main class="page-top-padding">
+    <section class="edu-hero-section reveal">
+        <div class="section-heading">
+            <h1>Astro 101: The Big Three</h1>
+            <p>Master the foundational building blocks of your astrological identity: The Sun, The Moon, and the Rising Sign.</p>
+        </div>
+
+        <div class="edu-tabs-container">
+            <div class="edu-tabs">
+                <button class="edu-tab active" data-target="sun-content"><i class="fa-solid fa-sun gold"></i> The Sun</button>
+                <button class="edu-tab" data-target="moon-content"><i class="fa-solid fa-moon silver"></i> The Moon</button>
+                <button class="edu-tab" data-target="rising-content"><i class="fa-solid fa-circle-up purple"></i> The Rising</button>
+            </div>
+
+            <div class="edu-content-area glass-card">
+                <!-- Sun Content -->
+                <div class="edu-pane active" id="sun-content">
+                    <div class="edu-pane-header">
+                        <i class="fa-solid fa-sun gold large-icon"></i>
+                        <h2>The Sun: Your Core Identity</h2>
+                        <span class="edu-keyword">Ego &bull; Vitality &bull; Life Path</span>
+                    </div>
+                    <div class="edu-text">
+                        <p>When someone asks "What's your sign?", they are almost always asking for your Sun sign. It takes the Earth roughly 30 days to move through each zodiac sign, dictating what season we are in.</p>
+                        <h3>What it represents</h3>
+                        <p>The Sun is the center of our solar system, and astrologically, it represents the center of you. It governs your ego, your basic personality, your consciousness, and your vitality. It is the "I am" of your cosmic blueprint.</p>
+                        <h3>How to work with your Sun</h3>
+                        <p>Understanding your Sun sign helps you understand your fundamental drives. It shows you how you shine brightest and what you need to feel alive and purposeful.</p>
+                    </div>
+                </div>
+
+                <!-- Moon Content -->
+                <div class="edu-pane" id="moon-content">
+                    <div class="edu-pane-header">
+                        <i class="fa-solid fa-moon silver large-icon"></i>
+                        <h2>The Moon: Your Emotional Landscape</h2>
+                        <span class="edu-keyword">Emotions &bull; Instincts &bull; Inner Self</span>
+                    </div>
+                    <div class="edu-text">
+                        <p>The Moon moves quickly, changing signs approximately every two and a half days. Because of this, two people born in the same week can have entirely different emotional natures.</p>
+                        <h3>What it represents</h3>
+                        <p>While the Sun is the conscious self that you show the world, the Moon is your subconscious. It rules your emotional responses, your instincts, your deepest needs, and how you find comfort. It is the part of you that comes out when you are alone or with those you trust most.</p>
+                        <h3>How to work with your Moon</h3>
+                        <p>Nurturing your Moon sign is essential for emotional well-being. By understanding its needs, you can self-soothe effectively and communicate your emotional boundaries to others.</p>
+                    </div>
+                </div>
+
+                <!-- Rising Content -->
+                <div class="edu-pane" id="rising-content">
+                    <div class="edu-pane-header">
+                        <i class="fa-solid fa-circle-up purple large-icon"></i>
+                        <h2>The Rising Sign: Your Front Door</h2>
+                        <span class="edu-keyword">First Impressions &bull; Persona &bull; Appearance</span>
+                    </div>
+                    <div class="edu-text">
+                        <p>Also known as the Ascendant, this is the zodiac sign that was ascending on the eastern horizon at the exact moment of your birth. It changes every two hours, which is why an exact birth time is crucial.</p>
+                        <h3>What it represents</h3>
+                        <p>The Rising sign is the "mask" you wear when meeting others. It governs your first impressions, your outward demeanor, and even your physical appearance. Think of it as the cover of your book, or the front door to your house.</p>
+                        <h3>How to work with your Rising</h3>
+                        <p>Understanding your Ascendant helps you understand how others perceive you. It explains why you might come across differently than your Sun sign would suggest, and it sets the structure for your entire birth chart.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer reveal" id="about">
+    <div class="footer-links">
+        <div class="footer-col">
+            <h4>Company</h4>
+            <a href="index.html">Home</a>
+            <a href="#">About Us</a>
+            <a href="astro-101.html">Astro 101</a>
+            <a href="#">Connect</a>
+        </div>
+        <div class="footer-col">
+            <h4>Support</h4>
+            <a href="#">About Us</a>
+            <a href="#">Features</a>
+            <a href="#">App</a>
+            <a href="#">2026 Year Ahead</a>
+            <a href="#">Podcasts</a>
+        </div>
+        <div class="footer-col">
+            <h4>Connect</h4>
+            <a href="#">Accessibility</a>
+            <a href="#">Privacy Foundation</a>
+            <a href="#">Terms of Condition</a>
+        </div>
+    </div>
+    <div class="newsletter">
+        <h4>SUBSCRIBE TO OUR NEWSLETTER</h4>
+        <div class="input-group">
+            <input type="email" placeholder="Your email address...">
+        </div>
+        <div class="social-icons">
+            <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+    </div>
+</footer>
+
+<script src="scripts.js"></script>
+</body>
+</html>

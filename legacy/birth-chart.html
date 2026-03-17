@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luna - Interactive Birth Chart</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        <a href="index.html" class="logo-link">
+            <i class="fa-solid fa-moon"></i> Luna
+        </a>
+    </div>
+    <nav class="nav-links">
+        <a href="index.html#vibe">Today</a>
+        <a href="index.html#year-ahead">2026 Year Ahead</a>
+        <a href="birth-chart.html" class="active">Birth Chart</a>
+        <a href="star-map.html">Star Map</a>
+        <a href="astro-101.html">Astro 101</a>
+        <a href="app-features.html">App</a>
+        <a href="podcasts.html">Podcasts</a>
+        <a href="index.html#about">About</a>
+    </nav>
+    <div class="nav-actions">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+</header>
+
+<main>
+    <section class="chart-hero-section reveal">
+        <div class="section-heading">
+            <h1>Calculate Your Birth Chart</h1>
+            <p>Enter your exact time and place of birth to unlock your cosmic DNA.</p>
+        </div>
+
+        <div class="glass-card form-card">
+            <form id="birth-chart-form" action="#" class="chart-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Enter your name" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="date">Date of Birth</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Time of Birth</label>
+                        <input type="time" id="time" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="location">City of Birth</label>
+                        <input type="text" id="location" placeholder="e.g. New York, NY" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary form-submit">GENERATE CHART</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Simulated Results Section (Hidden by Default) -->
+    <section class="chart-results-section reveal hidden" id="chart-results">
+        <div class="glass-card results-card">
+            <div class="results-layout">
+                <div class="results-visual">
+                    <img src="assets/birth_chart_ui.png" alt="Generated Birth Chart" class="generated-chart-img">
+                </div>
+                <div class="results-info">
+                    <h2><span id="display-name">Alex</span>'s Chart</h2>
+                    <p class="chart-meta"><i class="fa-solid fa-location-dot"></i> <span id="display-location">New York, NY</span> | <span id="display-time">12:48 PM</span></p>
+                    
+                    <div class="big-three">
+                        <div class="sign-badge">
+                            <i class="fa-solid fa-sun gold"></i>
+                            <div class="sign-details">
+                                <span class="planet">Sun</span>
+                                <span class="sign" id="display-sun">Leo</span>
+                            </div>
+                        </div>
+                        <div class="sign-badge">
+                            <i class="fa-solid fa-moon silver"></i>
+                            <div class="sign-details">
+                                <span class="planet">Moon</span>
+                                <span class="sign" id="display-moon">Scorpio</span>
+                            </div>
+                        </div>
+                        <div class="sign-badge">
+                            <i class="fa-solid fa-circle-up purple"></i>
+                            <div class="sign-details">
+                                <span class="planet">Rising</span>
+                                <span class="sign" id="display-rising">Libra</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-description">
+                        <h3>Cosmic Profile</h3>
+                        <p id="display-profile">With a Leo Sun, your core is radiant, dramatic, and fiercely loyal. Your Scorpio Moon brings intense depths, passionate emotions, and a need for profound connections. Your Libra Rising smooths these intense energies, presenting a charming, diplomatic, and aesthetically oriented face to the world.</p>
+                    </div>
+
+                    <div class="chart-buttons">
+                        <button class="btn-secondary">DOWNLOAD PDF</button>
+                        <button class="btn-primary">VIEW FULL REPORT</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer reveal" id="about">
+    <div class="footer-links">
+        <div class="footer-col">
+            <h4>Company</h4>
+            <a href="index.html">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">Astro 101</a>
+            <a href="#">Connect</a>
+        </div>
+        <div class="footer-col">
+            <h4>Support</h4>
+            <a href="#">About Us</a>
+            <a href="#">Features</a>
+            <a href="#">App</a>
+            <a href="#">2026 Year Ahead</a>
+            <a href="#">Podcasts</a>
+        </div>
+        <div class="footer-col">
+            <h4>Connect</h4>
+            <a href="#">Accessibility</a>
+            <a href="#">Privacy Foundation</a>
+            <a href="#">Terms of Condition</a>
+        </div>
+    </div>
+    <div class="newsletter">
+        <h4>SUBSCRIBE TO OUR NEWSLETTER</h4>
+        <div class="input-group">
+            <input type="email" placeholder="Your email address...">
+        </div>
+        <div class="social-icons">
+            <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+    </div>
+</footer>
+
+<script src="scripts.js"></script>
+</body>
+</html>
